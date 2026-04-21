@@ -113,7 +113,9 @@ Or upload directly to **Kaggle** and run with T4 GPU for best performance.
    - Multi-task RoBERTa fine-tuning
    - In-domain and cross-domain evaluation
    - LIME explanation generation
+## 🔄 Pipeline
 
+![Pipeline](pipeline.png)
 ### Inference on Custom Text
 ```python
 # After training, run inference on any headline
