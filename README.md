@@ -10,6 +10,10 @@
 
 **Detects sarcasm by catching the mismatch between what text *says* and what it *actually means* — no hand-crafted labels, no schema dependency, full explainability.**
 
+### 🚀 [Try the Live Demo →](https://huggingface.co/spaces/bk1210/sarcasm-detector)
+
+[![Open in HuggingFace Spaces](https://img.shields.io/badge/🤗-Live%20Demo%20on%20HuggingFace%20Spaces-blue?style=for-the-badge)](https://huggingface.co/spaces/bk1210/sarcasm-detector)
+
 [Features](#-features) • [How It Works](#-how-it-works) • [Results](#-results) • [Installation](#-installation) • [Usage](#-usage) • [Architecture](#-architecture) • [Tech Stack](#-tech-stack) • [Contact](#-contact)
 
 </div>
@@ -54,19 +58,18 @@ The project offers two core contributions:
 
 ## 🖥️ Demo
 
-### Sarcasm Detection
-```
-Input  → "Local Politician Promises This Time He Really Means It About Tax Cuts"
-Output → 🙄 Sarcastic (P = 0.954)
-         LIME flags: "really means it", "this time"
-```
+### 🔴 Live App
+> **[https://huggingface.co/spaces/bk1210/sarcasm-detector](https://huggingface.co/spaces/bk1210/sarcasm-detector)**
+> Type any headline or sentence and get instant sarcasm + sentiment prediction with confidence scores.
 
-### Non-Sarcastic
-```
-Input  → "Dog Reunited With Owner After Being Missing For Three Days"
-Output → ✅ Not Sarcastic (P = 0.095)
-         LIME weights: near zero across all tokens
-```
+### Example Predictions
+
+| Input | Sarcasm | Confidence |
+|---|---|---|
+| "Local Politician Promises This Time He Really Means It About Tax Cuts" | 🙄 Sarcastic | 95.4% |
+| "Area Company Celebrates Record Profits By Cutting Employee Benefits Again" | 🙄 Sarcastic | 91.2% |
+| "Dog Reunited With Owner After Being Missing For Three Days" | ✅ Not Sarcastic | 9.5% |
+| "City Council Approves Funding For New Public Library" | ✅ Not Sarcastic | 4.1% |
 
 ---
 
@@ -78,8 +81,8 @@ Output → ✅ Not Sarcastic (P = 0.095)
 
 ### Step 1 — Clone the Repository
 ```bash
-git clone https://github.com/bk1210/sarcasm-sentiment-incongruence.git
-cd sarcasm-sentiment-incongruence
+git clone https://github.com/bk1210/Detecting-Sarcasm-as-Sentiment-Incongruence.git
+cd Detecting-Sarcasm-as-Sentiment-Incongruence
 ```
 
 ### Step 2 — Install Dependencies
@@ -94,7 +97,7 @@ Place `Sarcasm_Headlines_Dataset_v2.json` in the project root.
 
 ### Step 4 — Run the Notebook
 ```bash
-jupyter notebook nlp.ipynb
+jupyter notebook Detecting_Sarcasm_as_Sentiment_Incongruence.ipynb
 ```
 
 Or upload directly to **Kaggle** and run with T4 GPU for best performance.
@@ -105,7 +108,7 @@ Or upload directly to **Kaggle** and run with T4 GPU for best performance.
 
 ### Running the Full Pipeline
 
-1. Open `nlp.ipynb`
+1. Open the notebook
 2. Run all cells top to bottom — the notebook handles:
    - Data loading and preprocessing
    - Auto-labeling via the Sentiment Incongruence strategy
@@ -113,9 +116,7 @@ Or upload directly to **Kaggle** and run with T4 GPU for best performance.
    - Multi-task RoBERTa fine-tuning
    - In-domain and cross-domain evaluation
    - LIME explanation generation
-## 🔄 Pipeline
 
-![Pipeline](pipeline.png)
 ### Inference on Custom Text
 ```python
 # After training, run inference on any headline
@@ -164,11 +165,11 @@ RoBERTa-base Encoder (125M params, d=768, 12 layers)
 ### Project Structure
 
 ```
-sarcasm-sentiment-incongruence/
+Detecting-Sarcasm-as-Sentiment-Incongruence/
 │
-├── nlp.ipynb                              # Full pipeline — labeling, training, eval, LIME
-├── requirements.txt                       # Python dependencies
-└── README.md                              # Project documentation
+├── Detecting_Sarcasm_as_Sentiment_Incongruence.ipynb   # Full pipeline
+├── requirements.txt                                     # Python dependencies
+└── README.md                                            # This file
 ```
 
 ---
@@ -217,6 +218,7 @@ sarcasm-sentiment-incongruence/
 | scikit-learn | TF-IDF + LR baseline, metrics |
 | LIME | Token-level explainability |
 | Matplotlib / Seaborn | Training curves, confusion matrix |
+| Streamlit | Live demo web app |
 | Kaggle (T4 GPU) | Training environment |
 
 ---
@@ -234,6 +236,7 @@ matplotlib>=3.7.0
 seaborn>=0.12.0
 tqdm>=4.65.0
 lime>=0.2.0.1
+streamlit>=1.32.0
 ```
 
 Install with:
@@ -249,7 +252,6 @@ pip install -r requirements.txt
 - [ ] Domain-adaptive masked language modeling to close the cross-domain gap
 - [ ] Graded sarcasm intensity scoring instead of binary labels
 - [ ] Extend the auto-labeler to multilingual corpora
-- [ ] Streamlit demo app for live inference
 
 ---
 
@@ -280,6 +282,8 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 <div align="center">
 
 **⭐ If you found this project useful, please give it a star on GitHub! ⭐**
+
+[![Open in HuggingFace Spaces](https://img.shields.io/badge/🤗-Try%20Live%20Demo-blue?style=for-the-badge)](https://huggingface.co/spaces/bk1210/sarcasm-detector)
 
 *Built with ❤️ for making NLP models that actually understand what you mean*
 
